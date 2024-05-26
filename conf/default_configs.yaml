@@ -1,0 +1,5 @@
+---
+default_config:
+  vagrantfile_api_version: '2'
+  lc_all: 'en_US.UTF-8'
+...
