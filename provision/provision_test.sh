@@ -22,10 +22,10 @@
 shopt -s expand_aliases
 
 ### Workdir
-WORK_DIR="${PWD}"
+WORK_DIR="/vagrant"
 
 ### Import functions
-for FUNCTION in $(grep -F 'Test: [OK]' -l -r ${WORK_DIR}/function/); do
+for FUNCTION in $(grep -F 'Test: [OK]' -l -r ${WORK_DIR}/provision/function/); do
   sed -i 's/\r$//' ${FUNCTION}
   source ${FUNCTION}
 done

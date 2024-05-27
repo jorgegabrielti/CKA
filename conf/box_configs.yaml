@@ -5,7 +5,7 @@
    box_version: "1.0"
    box_provider: 'virtualbox'
    hostname: 'master01'
-   dir_host: './shared_folder'
+   dir_host: '.'
    dir_guest: '/vagrant'
    cpu: '2'
    ram: '2048'
@@ -13,7 +13,7 @@
    vmgui: 'false'
    host_port: '1020' 
    guest_port: '443'
-   file_provision: './provision/provision.sh'
+   file_provision: './provision/provision_test.sh'
 
 # - name: 'worker01'
 #   box: 'jgabriel/ubuntu-20.04'
