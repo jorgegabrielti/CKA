@@ -39,7 +39,9 @@ echo -e "\e[40;32;1m[TASK]: Kubernetes Component Detect\e[m\n"
 case ${HOSTNAME} in
   "master01")
     echo -e "\tComponent: [Control-plane]\n"
-    _control_plane_install
+    _container_runtime_install
+    _kubeadm_install
+    _cluster_init
   ;;
   *)
     echo -e "\tComponent: [Worker]\n"
