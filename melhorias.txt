@@ -1,4 +1,3 @@
 - Fazer o script utilizar o arquivo box_configs.yaml para obter dados da box.
-- Criar as funções para configuração dos workes
 - homologar para outras distros linux
 - tornar o script e funções parametrizáveis e não hardcode.

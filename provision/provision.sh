@@ -33,8 +33,14 @@ done
 ### Distro Detect
 _distro_detect
 
+### Packages installations
+#packages_install
+
 ### Kubernetes component detect
 echo -e "\e[40;32;1m[TASK]: Kubernetes Component Detect\e[m\n"
+
+# Checking box_configs.yaml
+
 
 case ${HOSTNAME} in
   "master01")
@@ -45,7 +51,8 @@ case ${HOSTNAME} in
   ;;
   *)
     echo -e "\tComponent: [Worker]\n"
-    _worker_install
+    _container_runtime_install
+    _kubeadm_install
   ;;
 esac
 
