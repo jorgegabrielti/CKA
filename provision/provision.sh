@@ -34,25 +34,35 @@ done
 _distro_detect
 
 ### Packages installations
-#packages_install
+_packages_install
 
 ### Kubernetes component detect
 echo -e "\e[40;32;1m[TASK]: Kubernetes Component Detect\e[m\n"
 
-# Checking box_configs.yaml
+# Get count total objects in /vagrant/conf/box_configs.yaml
+BOX_CONFIGS=$(yq '.[].k8s_component' < /vagrant/conf/box_configs.yaml | wc -l)
 
+for ((i=0; i<${BOX_CONFIGS}; i++)) 
+do 
+  yq ".[$i]" < /vagrant/conf/box_configs.yaml | grep -E "${HOSTNAME}" > /dev/null \
+  && KUBERNETES_COMPONENT=$(yq ".[$i].k8s_component" < /vagrant/conf/box_configs.yaml)
+done
 
-case ${HOSTNAME} in
-  "master01")
+case ${KUBERNETES_COMPONENT} in
+  "control-plane")
     echo -e "\tComponent: [Control-plane]\n"
     _container_runtime_install
     _kubeadm_install
     _cluster_init
   ;;
-  *)
-    echo -e "\tComponent: [Worker]\n"
+  "worker-node")
+    echo -e "\tComponent: [Worker-node]\n"
     _container_runtime_install
     _kubeadm_install
+  ;;
+  *)
+    echo "Invalid config. Check key: "kubernetes_component" in box_configs.yaml"
+    exit 0
   ;;
 esac
 

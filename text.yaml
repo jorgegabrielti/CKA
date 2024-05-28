@@ -1,0 +1,9 @@
+myApplication1:
+  - robot:		
+      name: “Kerno bot 456”		
+      type: “Humanoid”		
+      commissioned: 2024
+myFactory:	
+  - assemblyLine:		
+      name: “Line 1 Robot Assembly”		
+      commissioned: 2023
