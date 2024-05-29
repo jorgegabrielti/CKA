@@ -39,8 +39,6 @@ done
 ### Distro Detect
 _distro_detect
 
-
-
 ### Packages installations
 _packages_install
 

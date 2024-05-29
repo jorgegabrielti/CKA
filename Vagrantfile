@@ -1,15 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-### YAML module
+
 require 'yaml'
 
-### Default configs
+
 DEFAULT_CONFIGS = YAML.load_file 'conf/default_configs.yaml'
 VAGRANTFILE_API_VERSION = DEFAULT_CONFIGS['default_config']['vagrantfile_api_version']
 ENV["LC_ALL"] = DEFAULT_CONFIGS['default_config']['lc_all']
-# -------------------------------------------------------------------------------------
-### Box confis
+
 BOX_CONFIGS = YAML.load_file 'conf/box_configs.yaml'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -28,8 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ### Requirements: vagrant plugin install vagrant-disksize
       box.disksize.size = env['disk']
       box.vm.network "forwarded_port", guest: env['guest_port'], host: env['host_port'],  host_ip: "127.0.0.1"
-      
-      config.vm.provision "shell", path: env['file_provision']
+      box.vm.provision "shell", path: env['file_provision']
     end
   end
 end
